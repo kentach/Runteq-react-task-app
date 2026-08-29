@@ -1,30 +1,17 @@
 import { Link } from "react-router-dom";
 import styles from "../styles/taskCard.module.css";
-import type { Priority, Task } from "../../../types/task";
+import type { Task } from "../../../types/task";
+import { getPriorityClass } from "../utils/priority";
+import { getStatusLabel } from "../utils/status-label";
 
 interface TaskCardProps {
   task: Task;
 }
 
-const getPriorityClass = (priority: Priority) => {
-  switch (priority.toLowerCase()) {
-    case "high":
-      return styles.highPriority;
-    case "medium":
-      return styles.mediumPriority;
-    case "low":
-      return styles.lowPriority;
-  }
-};
-
-const getStatusLabel = (status: boolean): string => {
-  return status ? "完了" : "未完了";
-};
-
 const TaskCard = ({ task }: TaskCardProps) => {
   return (
     <div className={styles.taskCard}>
-      <Link to={`/task/${task.id}`} className={styles.detailLink}>
+      <Link to={`/tasks/${task.id}`} className={styles.detailLink}>
         <h3 className={styles.taskTitle}>{task.title}</h3>
       </Link>
       <p
@@ -32,7 +19,9 @@ const TaskCard = ({ task }: TaskCardProps) => {
       >
         {getStatusLabel(task.status)}
       </p>
-      <p className={`${styles.badge} ${getPriorityClass(task.priority)}`}>
+      <p
+        className={`${styles.badge} ${getPriorityClass(task.priority, styles)}`}
+      >
         {task.priority}
       </p>
       <p className={styles.taskDueDate}>{task.dueDate}</p>
