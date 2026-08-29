@@ -14,6 +14,7 @@ const TaskFormContainer = () => {
     description: "",
     priority: "medium", // 初期値として medium を設定
     dueDate: "",
+    status: false
   });
 
   const handleChange = (
