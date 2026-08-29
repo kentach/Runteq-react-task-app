@@ -23,6 +23,7 @@ const TaskEditFormContainer = () => {
           description: task.description,
           priority: task.priority,
           dueDate: task.dueDate,
+          status: task.status
         });
       }
     };

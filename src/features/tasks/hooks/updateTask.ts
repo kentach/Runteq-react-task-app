@@ -3,7 +3,7 @@ import type { TaskFormData, Task } from "../../../types/task";
 
 export const updateTask = async (
   id: string,
-  taskData: TaskFormData
+  taskData: Partial<TaskFormData>
 ): Promise<Task | null> => {
   const index = mockTasks.findIndex(
     (task) => task.id === Number.parseInt(id)
