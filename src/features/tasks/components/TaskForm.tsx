@@ -11,9 +11,10 @@ type TaskFormProps = {
   ) => void;
 
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+  id?: string;
 };
 
-const TaskForm = ({ onChange, formData, onSubmit }: TaskFormProps) => {
+const TaskForm = ({ onChange, formData, onSubmit, id }: TaskFormProps) => {
   return (
     <form className={styles.form} onSubmit={onSubmit}>
       <div className={styles.formGroup}>
@@ -57,7 +58,7 @@ const TaskForm = ({ onChange, formData, onSubmit }: TaskFormProps) => {
       </div>
 
       <button type="submit" className={styles.submitButton}>
-        作成する
+        {id ? "更新する" : "作成する"}
       </button>
     </form>
   );

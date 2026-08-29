@@ -12,10 +12,10 @@ export default function TaskDetailContainer() {
   useEffect(() => {
     if (!id) return;
 
-    const fetchTask = async() => {
+    const fetchTask = async () => {
       const fetchedTask = await getTaskById(id);
       setTask(fetchedTask ?? null);
-    }
+    };
     fetchTask();
   }, [id]);
 
