@@ -3,16 +3,19 @@ import type { TaskFormData } from "../../../types/task";
 
 type TaskFormProps = {
   formData: TaskFormData;
+
   onChange: (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
     >,
   ) => void;
+
+  onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
 };
 
-const TaskForm = ({ onChange, formData }: TaskFormProps) => {
+const TaskForm = ({ onChange, formData, onSubmit }: TaskFormProps) => {
   return (
-    <form className={styles.form}>
+    <form className={styles.form} onSubmit={onSubmit}>
       <div className={styles.formGroup}>
         <label>タスク名：</label>
         <input
@@ -44,7 +47,13 @@ const TaskForm = ({ onChange, formData }: TaskFormProps) => {
 
       <div className={styles.formGroup}>
         <label>期限日：</label>
-        <input type="date" name="dueDate" required onChange={onChange} value={formData.dueDate}/>
+        <input
+          type="date"
+          name="dueDate"
+          required
+          onChange={onChange}
+          value={formData.dueDate}
+        />
       </div>
 
       <button type="submit" className={styles.submitButton}>

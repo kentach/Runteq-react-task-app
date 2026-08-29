@@ -3,7 +3,7 @@ import styles from "../styles/taskForm.module.css";
 import TaskForm from "../components/TaskForm";
 import type { TaskFormData } from "../../../types/task";
 import { useState } from "react";
-
+import { createTask } from "../hooks/createTask";
 
 const TaskFormContainer = () => {
   const navigate = useNavigate();
@@ -30,11 +30,21 @@ const TaskFormContainer = () => {
     }));
   };
 
-  return (
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    // taskの作成完了まで待つ
+    await createTask(formData); // フォームに入力されているデータを使ってタスクを作成
+    navigate("/tasks");
+  };
 
+  return (
     <div className={styles.container}>
       <h1>新規タスクの作成</h1>
-      <TaskForm onChange={handleChange} formData={formData} />
+      <TaskForm
+        onChange={handleChange}
+        formData={formData}
+        onSubmit={handleSubmit}
+      />
       <div className={styles.cancelContainer}>
         <Link
           onClick={() => navigate("/tasks")}
