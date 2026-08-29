@@ -1,17 +1,15 @@
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import HomePage from "./pages/home/HomePage";
 import TaskListPage from "./pages/tasks/TaskListPage";
-import TaskDetailPage from "./pages/tasks/taskDetailPage";
+import TaskDetailPage from "./pages/tasks/TaskDetailPage";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/tasks" element={<TaskListPage/>} >
-          <Route path="/:id" element={<TaskDetailPage/>}/>
-        </Route>
-
+        <Route path="/tasks" element={<TaskListPage />} />
+        <Route path="/tasks/:id" element={<TaskDetailPage />} />
       </Routes>
     </BrowserRouter>
   );

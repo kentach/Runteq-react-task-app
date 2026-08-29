@@ -1,9 +1,9 @@
-// タスク詳細ページコンポーネント
+import TaskDetailContainer from "../../features/tasks/Containers/TaskDetailContainer";
 
-const TaskDetailPage = () => {
+export default function TaskDetailPage() {
   return (
-    <div></div>
-  )
-};
-
-export default TaskDetailPage;
+    <div>
+      <TaskDetailContainer />
+    </div>
+  );
+}
