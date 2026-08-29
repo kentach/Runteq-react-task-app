@@ -3,6 +3,7 @@ import type { Task } from "../../../types/task";
 import { getTasks } from "../hooks/getTasks";
 import styles from "../styles/TaskListContainer.module.css"
 import TaskCard from "../components/TaskCard";
+import { Link } from "react-router-dom";
 
 // タスク一覧ページに表示するタスク一覧コンポーネント
 const TaskListContainer = () => {
@@ -20,6 +21,11 @@ const TaskListContainer = () => {
   return (
     <div className={styles.container}>
       <h1>タスク一覧へ</h1>
+      <div className={styles.taskListHeader}>  {/* タスク作成ページへのリンクを追加 */}
+        <Link to="/tasks/new" className={styles.newTaskLink}>
+          新規作成
+        </Link>
+      </div>
       <div className={styles.tableContainer}>
         <div className={styles.header}>
           <div>タスク名</div>
