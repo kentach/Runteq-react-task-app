@@ -2,7 +2,7 @@ import { Routes, Route, BrowserRouter } from "react-router-dom";
 import HomePage from "./pages/home/HomePage";
 import TaskListPage from "./pages/tasks/TaskListPage";
 import TaskDetailPage from "./pages/tasks/TaskDetailPage";
-import TaskCreatePage from "./pages/tasks/taskCreatePage";
+import TaskCreatePage from "./pages/tasks/TaskCreatePage";
 import TaskEditPage from "./pages/tasks/TaskEditPage";
 
 function App() {
