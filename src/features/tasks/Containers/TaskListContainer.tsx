@@ -1,18 +1,37 @@
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import type { Task } from "../../../types/task";
+import { getTasks } from "../hooks/getTasks";
+import styles from "../styles/TaskListContainer.module.css"
+import TaskCard from "../components/TaskCard";
 
 // タスク一覧ページに表示するタスク一覧コンポーネント
-
 const TaskListContainer = () => {
+  const [tasks, setTasks] = useState<Task[]>([]);
+
+  // useEffectを使用し、読み込み時のみに実行
+  useEffect(() => {
+    const fetchTasks = async () => {
+      const fetchedTasks = await getTasks(); // mockデータからtasksを取得
+      setTasks(fetchedTasks); // taskを表示
+    };
+    fetchTasks();
+  }, []);
+
   return (
-    <div>
+    <div className={styles.container}>
       <h1>タスク一覧へ</h1>
-      <div>
-        <Link to="/login">
-          <h3>ログイン機能を実装をする</h3>
-        </Link>
-        <p>ステータス : 未完了</p>
-        <p>優先度 : 高</p>
-        <p>期限日 : 2025-02-10</p>
+      <div className={styles.tableContainer}>
+        <div className={styles.header}>
+          <div>タスク名</div>
+          <div>ステータス</div>
+          <div>優先度</div>
+          <div>期限日</div>
+        </div>
+        <div className={styles.taskList}>
+          {tasks.map((task) => (
+            <TaskCard key={task.id} task={task} />
+          ))}
+        </div>
       </div>
     </div>
   );
